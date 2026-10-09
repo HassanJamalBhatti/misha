@@ -10,7 +10,7 @@ const events = [
     start: "2027-01-07T18:00:00+05:00",
     end: "2027-01-07T22:00:00+05:00",
     time: "06:00 PM – 10:00 PM",
-    venue: "Sardar Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala",
+    venue: "At Home of the Bride, Near Jamia Masjid Sultania, Gujranwala",
     dress: "Traditional & Colorful",
     description: "An evening of music, laughter, colors and celebration.",
     symbol: "✿",
