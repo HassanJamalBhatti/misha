@@ -50,14 +50,14 @@ const whatsappNumber = "923340470768";
 
 const venueCards = [
   {
-    eventTitle: "Mehndi",
-    venueName: "Sardar Palace Marriage Hall",
-    address: "Hafiz Abad Road, Gujranwala",
-    mapLink:
-      "https://www.google.com/maps/place/Sardar+Palace+Marraige+hall/@32.1549679,74.1588124,17z/data=!3m1!4b1!4m6!3m5!1s0x391f2b366c2daad5:0x3b89f3d5f82c5340!8m2!3d32.1549634!4d74.1613873!16s%2Fg%2F11hz77rjgf?entry=ttu",
-    mapQuery: "32.1549634,74.1613873",
-    accent: "Mehndi Celebration",
-    number: "01",
+  eventTitle: "Mehndi",
+  venueName: "At Home of the Bride",
+  address: "Dr Maqsood Road, Gujranwala",
+  mapLink:
+    "https://maps.google.com/maps?q=32.1622898,74.165049&z=18&output=embed",
+  mapQuery: "Jamia Masjid Sultania, Dr Maqsood Road, Gujranwala",
+  accent: "Mehndi Celebration",
+  number: "01",
   },
   {
     eventTitle: "Nikah & Baraat",
