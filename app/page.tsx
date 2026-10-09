@@ -46,7 +46,7 @@ const couple = {
   venue: "Gujranwala, Pakistan",
 };
 
-const whatsappNumber = "923118116115";
+const whatsappNumber = "923340470768";
 
 const venueCards = [
   {
