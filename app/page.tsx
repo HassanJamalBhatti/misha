@@ -282,7 +282,7 @@ export default function WeddingInvitation() {
         aria-label={musicPlaying ? "Pause background music" : "Play background music"}
         className="fixed bottom-5 right-4 z-50 rounded-full border border-white/70 bg-[#8f5268]/95 px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-xl backdrop-blur transition hover:bg-[#6d3f51] sm:right-5 sm:px-5"
       >
-        {musicPlaying ? "Ⅱ Pause Music" : "♫ Play Music"}
+        {musicPlaying ? "Ⅱ" : "♫"}
       </button>
 
       {/* Hero */}
