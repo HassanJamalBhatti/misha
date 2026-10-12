@@ -306,66 +306,176 @@ function downloadCalendar(event: (typeof events)[number]) {
   window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
+
 function WeddingSplashScreen({
   onOpen,
 }: {
   onOpen: () => void;
 }) {
+  const [opening, setOpening] = useState(false);
+
+  function handleOpen() {
+    if (opening) return;
+
+    setOpening(true);
+
+    window.setTimeout(() => {
+      onOpen();
+    }, 1250);
+  }
+
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-cover bg-center px-5 py-10 text-center text-white"
+      className={`wedding-gate fixed inset-0 z-[100] isolate flex items-center justify-center overflow-hidden text-center ${
+        opening ? "gate-opening" : ""
+      }`}
       style={{
-        backgroundImage: `linear-gradient(rgba(57,27,42,.78), rgba(57,27,42,.88)), url('${photos.hero}')`,
+        backgroundImage: `
+          linear-gradient(
+            145deg,
+            rgba(42, 18, 32, 0.82),
+            rgba(92, 42, 60, 0.88)
+          ),
+          url("${photos.hero}")
+        `,
       }}
     >
-      <div className="pointer-events-none absolute inset-4 border border-white/40 sm:inset-8" />
+      {/* Ambient glow */}
+      <div className="gate-glow gate-glow-one" />
+      <div className="gate-glow gate-glow-two" />
 
-      <div className="relative z-10 mx-auto w-full max-w-lg">
-        <p className="text-xs uppercase tracking-[0.35em] text-[#f2c4cf]">
-          Together with our families
+      {/* Decorative frame */}
+      <div className="gate-frame" />
+      <div className="gate-frame-inner" />
+
+      {/* Floating decorations */}
+      <div className="gate-petals" aria-hidden="true">
+        {Array.from({ length: 14 }, (_, i) => (
+          <span
+            key={i}
+            style={{
+              left: `${(i * 37 + 8) % 96}%`,
+              animationDelay: `${(i % 7) * 0.65}s`,
+              animationDuration: `${7 + (i % 5) * 1.4}s`,
+            }}
+          >
+            {["✦", "❀", "♡", "✧"][i % 4]}
+          </span>
+        ))}
+      </div>
+
+      {/* Center invitation content */}
+      <div className="gate-content relative z-20 mx-auto flex w-full max-w-xl flex-col items-center px-7 py-8 sm:px-10">
+        <p className="gate-enter gate-eyebrow">
+          TOGETHER WITH OUR FAMILIES
         </p>
 
-        <p lang="ur" dir="rtl" className="mt-3 font-urdu text-lg text-[#f2c4cf]">
+        <p
+          lang="ur"
+          dir="rtl"
+          className="gate-enter mt-2 font-urdu text-sm text-[#f5d7c5] sm:text-base"
+        >
           اپنے خاندانوں کی دعاؤں کے ساتھ
         </p>
 
-        <div className="my-7 text-5xl text-[#f2c4cf]">❀</div>
+        <div className="gate-enter gate-emblem" aria-hidden="true">
+          <span>❧</span>
+          <span className="gate-emblem-heart">♡</span>
+          <span>❧</span>
+        </div>
 
-        <h1 className="font-serif text-4xl leading-relaxed sm:text-6xl">
-          {couple.bride}
-          <span className="my-2 block font-serif italic text-[#f2c4cf]">
+        <p className="gate-enter font-serif text-sm italic tracking-widest text-[#f9dfc9] sm:text-base">
+          The Wedding Invitation
+        </p>
+
+        <h1 className="gate-enter mt-5 w-full font-serif text-[clamp(2rem,8vw,4.4rem)] font-normal leading-tight text-white">
+          <span className="block break-words">
+            {couple.bride}
+          </span>
+
+          <span className="gate-ampersand my-1 block text-[clamp(2.5rem,10vw,5rem)] leading-none text-[#f3c99d]">
             &
           </span>
-          {couple.groom}
+
+          <span className="block break-words">
+            {couple.groom}
+          </span>
         </h1>
 
-        <p lang="ur" dir="rtl" className="mt-5 font-urdu text-2xl leading-relaxed">
+        <p
+          lang="ur"
+          dir="rtl"
+          className="gate-enter mt-4 font-urdu text-xl leading-relaxed text-[#fbe4dc] sm:text-2xl"
+        >
           {couple.brideUrdu} و {couple.groomUrdu}
         </p>
 
-        <p className="mt-7 font-serif text-xl italic">{couple.date}</p>
-        <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg">
+        <div className="gate-enter gate-date-divider">
+          <span />
+          <span>✦</span>
+          <span />
+        </div>
+
+        <p className="gate-enter mt-2 font-serif text-lg italic text-[#f9dfc9] sm:text-2xl">
+          {couple.date}
+        </p>
+
+        <p
+          lang="ur"
+          dir="rtl"
+          className="gate-enter mt-2 font-urdu text-base text-white/90 sm:text-lg"
+        >
           {couple.dateUrdu}
         </p>
 
         <button
           type="button"
-          onClick={onOpen}
-          className="mt-9 rounded-full border border-white/70 bg-white/10 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur transition hover:bg-white hover:text-[#744455]"
+          onClick={handleOpen}
+          disabled={opening}
+          className="gate-enter gate-open-button mt-7 w-full max-w-[290px] sm:mt-9"
         >
-          <Bi
-            en="Open Your Invitation ♡"
-            ur="دعوت نامہ کھولیں ♡"
-          />
+          <span className="gate-button-icon">♡</span>
+
+          <span>
+            {opening ? "Opening Your Invitation..." : "Open Your Invitation"}
+          </span>
+
+          <span className="gate-button-icon">♡</span>
         </button>
 
-        <p className="mt-5 text-xs text-white/70">
-          A little invitation, a lifetime of memories.
+        <p className="gate-enter mt-4 text-[10px] tracking-[0.12em] text-white/70 sm:text-xs">
+          A LITTLE INVITATION, A LIFETIME OF MEMORIES
         </p>
+      </div>
+
+      {/* The two animated gate panels */}
+      <div className="gate-door gate-door-left" aria-hidden="true">
+        <div className="gate-door-border">
+          <div className="gate-door-ornament">
+            <span>❦</span>
+            <span>✧</span>
+            <span>❦</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="gate-door gate-door-right" aria-hidden="true">
+        <div className="gate-door-border">
+          <div className="gate-door-ornament">
+            <span>❦</span>
+            <span>✧</span>
+            <span>❦</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="gate-bottom-note" aria-hidden="true">
+        WITH LOVE & BLESSINGS · 2027
       </div>
     </div>
   );
 }
+
 
 function FireworkEffect({
   onDone,
