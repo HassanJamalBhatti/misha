@@ -1295,65 +1295,99 @@ export default function WeddingInvitation() {
       </section>
 
       {/* Closing */}
-      <footer
-        className="relative w-full overflow-hidden bg-cover bg-center px-5 py-24 text-center text-white sm:py-32"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(57,27,42,.86), rgba(111,54,73,.9)), url('${photos.hero}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="pointer-events-none absolute inset-4 border border-white/20 sm:inset-8" />
 
-        <div className="relative z-10 mx-auto max-w-3xl">
-          <p className="wedding-script text-4xl text-[#f2c4cf] sm:text-6xl">
-            And So, Forever Begins
-          </p>
+  
+    <footer
+      className="relative w-full overflow-x-clip bg-cover bg-center px-4 py-16 text-center text-white sm:px-6 sm:py-24 md:py-32"
+      style={{
+        backgroundImage: `linear-gradient(135deg, rgba(35,12,24,.92), rgba(80,30,49,.90)), url('${photos.hero}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Decorative border */}
+      <div className="pointer-events-none absolute inset-2 border border-white/20 sm:inset-5 md:inset-8" />
+      <div className="pointer-events-none absolute inset-4 border border-white/10 sm:inset-8 md:inset-11" />
 
-          <p lang="ur" dir="rtl" className="mt-4 font-urdu text-2xl text-[#f2c4cf]">
-            اور یوں ہمیشہ کے سفر کا آغاز ہوتا ہے
-          </p>
+      {/* Footer content */}
+      <div className="relative z-10 mx-auto flex w-full max-w-3xl min-w-0 flex-col items-center">
 
-          <div className="mx-auto mt-5 text-2xl text-[#f2c4cf]">❀</div>
+        {/* Closing message */}
+        <p className="wedding-script max-w-full break-words text-3xl leading-relaxed text-[#f2c4cf] sm:text-5xl md:text-6xl">
+          And So, Forever Begins
+        </p>
 
-          <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#f2c4cf]">
-            One Love. One Promise.
-          </p>
+        <p
+          lang="ur"
+          dir="rtl"
+          className="mt-3 max-w-full font-urdu text-xl leading-relaxed text-[#f2c4cf] sm:mt-4 sm:text-2xl"
+        >
+          اور یوں ہمیشہ کے سفر کا آغاز ہوتا ہے
+        </p>
 
-          <p lang="ur" dir="rtl" className="mt-3 font-urdu text-lg text-[#f2c4cf]">
-            ایک محبت، ایک وعدہ
-          </p>
-
-          <h2 className="mt-6 font-serif text-3xl italic sm:text-6xl">
-            {couple.bride}
-            <span className="text-[#f2c4cf]"> &amp; </span>
-            {couple.groom}
-          </h2>
-
-          <p lang="ur" dir="rtl" className="mt-4 font-urdu text-2xl">
-            {couple.brideUrdu} و {couple.groomUrdu}
-          </p>
-
-          <p className="mx-auto mt-6 max-w-md text-sm leading-7 text-white/80">
-            We feel blessed to begin this journey together, and we cannot wait to celebrate with you.
-          </p>
-
-          <p lang="ur" dir="rtl" className="mx-auto mt-3 max-w-md font-urdu text-base leading-9 text-white/80">
-            ہم اپنے اس نئے سفر کے آغاز پر اللہ کے شکر گزار ہیں اور آپ کے ساتھ یہ خوشیاں منانے کے منتظر ہیں۔
-          </p>
-
-          <a
-            href="#home"
-            className="mt-9 inline-flex rounded-full border border-white/60 px-7 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] transition hover:bg-white hover:text-[#744052]"
-          >
-            <Bi en="Back to Top ↑" ur="واپس اوپر جائیں ↑" />
-          </a>
-
-          <p className="mt-14 text-[9px] uppercase tracking-[0.2em] text-white/50">
-            Made with love for our special day · 2026
-          </p>
+        <div className="mx-auto mt-5 text-xl text-[#f2c4cf] sm:mt-6 sm:text-2xl">
+          ❀
         </div>
-      </footer>
+
+        {/* Promise */}
+        <p className="mt-5 max-w-full text-[9px] font-semibold uppercase leading-5 tracking-[0.16em] text-[#f2c4cf] sm:text-xs sm:tracking-[0.3em]">
+          One Love. One Promise.
+        </p>
+
+        <p
+          lang="ur"
+          dir="rtl"
+          className="mt-3 font-urdu text-base leading-8 text-[#f2c4cf] sm:text-lg"
+        >
+          ایک محبت، ایک وعدہ
+        </p>
+
+        {/* Couple names */}
+        <h2 className="mt-6 w-full min-w-0 break-words font-serif text-3xl italic leading-relaxed sm:mt-7 sm:text-5xl md:text-6xl">
+          {couple.bride}
+          <span className="text-[#f2c4cf]"> &amp; </span>
+          {couple.groom}
+        </h2>
+
+        <p
+          lang="ur"
+          dir="rtl"
+          className="mt-3 max-w-full break-words font-urdu text-xl leading-relaxed text-[#f2c4cf] sm:mt-4 sm:text-2xl"
+        >
+          {couple.brideUrdu} و {couple.groomUrdu}
+        </p>
+
+        {/* English blessing */}
+        <p className="mx-auto mt-5 w-full max-w-md px-2 text-sm leading-7 text-white/80 sm:mt-6 sm:text-base sm:leading-8">
+          We feel blessed to begin this journey together, and we cannot wait to celebrate with you.
+        </p>
+
+        {/* Urdu blessing */}
+        <p
+          lang="ur"
+          dir="rtl"
+          className="mx-auto mt-3 w-full max-w-md px-2 font-urdu text-sm leading-9 text-white/80 sm:text-base"
+        >
+          ہم اپنے اس نئے سفر کے آغاز پر اللہ کے شکر گزار ہیں اور آپ کے ساتھ یہ خوشیاں منانے کے منتظر ہیں۔
+        </p>
+
+        {/* Back to top button */}
+        <a
+          href="#home"
+          className="mt-7 inline-flex min-h-11 max-w-full items-center justify-center rounded-full border border-white/60 px-6 py-3 text-[9px] font-semibold uppercase tracking-[0.12em] transition-colors duration-300 hover:bg-white hover:text-[#744052] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-9 sm:px-7 sm:text-xs sm:tracking-[0.2em]"
+        >
+          <Bi en="Back to Top ↑" ur="واپس اوپر جائیں ↑" />
+        </a>
+
+        {/* Copyright */}
+        <div className="mx-auto mt-10 h-px w-16 bg-[#f2c4cf]/40 sm:mt-12" />
+
+        <p className="mt-5 max-w-full px-2 text-[8px] uppercase leading-5 tracking-[0.12em] text-white/55 sm:mt-6 sm:text-[9px] sm:tracking-[0.2em]">
+          Made with love for our special day · 2026
+        </p>
+      </div>
+    </footer>
+
     </main>
   );
 }
