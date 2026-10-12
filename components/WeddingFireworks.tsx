@@ -15,7 +15,8 @@ type Spark = {
 };
 
 // Gold / cream / blush palette (splash ke colours se match)
-const HUES = [43, 48, 38, 52, 20, 340];
+// Dark pink / rose / magenta palette
+const HUES = [325, 330, 335, 340, 315, 345];
 
 export default function WeddingFireworks({ duration = 7000, onDone }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);

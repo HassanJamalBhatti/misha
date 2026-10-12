@@ -1,15 +1,13 @@
 "use client";
 
+import WeddingSplashScreen from "@/components/WeddingSplashScreen";
+import WeddingFireworks from "@/components/WeddingFireworks";
 import { useEffect, useRef, useState } from "react";
-import type { CSSProperties, FormEvent } from "react";
-
-/* ------------------------------------------------------------------ */
-/*  DATA                                                               */
-/* ------------------------------------------------------------------ */
+import type { FormEvent, ReactNode } from "react";
 
 const couple = {
   bride: "Misha Shehzadi",
-  brideUrdu: "میشہ شہزادی",
+  brideUrdu: "مشاء شہزادی",
   groom: "Hassan Jamal",
   groomUrdu: "حسن جمال",
   date: "January 07–09, 2027",
@@ -28,12 +26,16 @@ const events = [
     end: "2027-01-07T22:00:00+05:00",
     time: "06:00 PM – 10:00 PM",
     timeUrdu: "شام ۶ بجے تا رات ۱۰ بجے",
-    venue: "At Home of the Bride, Near Jamia Masjid Sultania, Gujranwala",
-    venueUrdu: "دلہن کی رہائش گاہ، نزد جامع مسجد سلطانیہ، گوجرانوالہ",
+    venue:
+      "At Home of the Bride, Near Jamia Masjid Sultania, Gujranwala",
+    venueUrdu:
+      "دلہن کی رہائش گاہ، نزد جامع مسجد سلطانیہ، گوجرانوالہ",
     dress: "Traditional & Colorful",
     dressUrdu: "روایتی اور رنگ برنگے لباس",
-    description: "An evening of music, laughter, colors and celebration.",
-    descriptionUrdu: "موسیقی، خوشیوں، رنگوں اور محبت بھری شام۔",
+    description:
+      "An evening of music, laughter, colors and celebration.",
+    descriptionUrdu:
+      "موسیقی، خوشیوں، رنگوں اور محبت بھری شام۔",
     symbol: "✿",
     image: "/rasam-e-hina.jpg",
   },
@@ -51,7 +53,8 @@ const events = [
     dressUrdu: "باوقار اور خوبصورت لباس",
     description:
       "The beautiful beginning of our forever, surrounded by loved ones.",
-    descriptionUrdu: "اپنوں کی محبت اور دعاؤں کے سائے میں ایک خوبصورت آغاز۔",
+    descriptionUrdu:
+      "اپنوں کی محبت اور دعاؤں کے سائے میں ایک خوبصورت آغاز۔",
     symbol: "♡",
     image: "/barat.jpg",
   },
@@ -64,11 +67,14 @@ const events = [
     time: "01:00 PM – 04:00 PM",
     timeUrdu: "دوپہر ۱ بجے تا شام ۴ بجے",
     venue: "M.B Palace, Hafiz Abad Road, Near Ghory Shah Chowk, Gujranwala",
-    venueUrdu: "ایم بی پیلس، حافظ آباد روڈ، نزد گھوڑے شاہ چوک، گوجرانوالہ",
+    venueUrdu:
+      "ایم بی پیلس، حافظ آباد روڈ، نزد گھوڑے شاہ چوک، گوجرانوالہ",
     dress: "Semi-Formal",
     dressUrdu: "نیم رسمی لباس",
-    description: "Join us for a joyful celebration of our new beginning.",
-    descriptionUrdu: "ہماری نئی زندگی کی خوشیوں میں ہمارے ساتھ شریک ہوں۔",
+    description:
+      "Join us for a joyful celebration of our new beginning.",
+    descriptionUrdu:
+      "ہماری نئی زندگی کی خوشیوں میں ہمارے ساتھ شریک ہوں۔",
     symbol: "❀",
     image: "/waleema.jpg",
   },
@@ -115,10 +121,6 @@ const photos = {
     "https://images.unsplash.com/photo-1519225421980-88d3e6e6b8a5?auto=format&fit=crop&w=1800&q=85",
 };
 
-/* ------------------------------------------------------------------ */
-/*  SMALL UI HELPERS                                                   */
-/* ------------------------------------------------------------------ */
-
 function Bi({
   en,
   ur,
@@ -135,6 +137,29 @@ function Bi({
         lang="ur"
         dir="rtl"
         className="mt-1 block font-urdu leading-relaxed"
+      >
+        {ur}
+      </span>
+    </span>
+  );
+}
+
+function NameText({
+  en,
+  ur,
+  className = "",
+}: {
+  en: string;
+  ur: string;
+  className?: string;
+}) {
+  return (
+    <span className={`block min-w-0 ${className}`}>
+      <span className="block break-words">{en}</span>
+      <span
+        lang="ur"
+        dir="rtl"
+        className="mt-1 block font-urdu break-words"
       >
         {ur}
       </span>
@@ -159,40 +184,44 @@ function SectionHeading({
 }) {
   return (
     <div className="mx-auto mb-12 w-full max-w-2xl text-center">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d6558a] sm:text-xs sm:tracking-[0.36em]">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#b46c82] sm:text-xs sm:tracking-[0.36em]">
         {eyebrow}
       </p>
 
-      <p lang="ur" dir="rtl" className="mt-2 font-urdu text-sm text-[#d6558a]">
+      <p
+        lang="ur"
+        dir="rtl"
+        className="mt-2 font-urdu text-sm text-[#b46c82]"
+      >
         {eyebrowUrdu}
       </p>
 
-      <div className="mx-auto mt-4 flex items-center justify-center gap-3 text-[#e86fa3]">
-        <span className="h-px w-10 bg-[#f0b4d0]" />
+      <div className="mx-auto mt-4 flex items-center justify-center gap-3 text-[#c98d9c]">
+        <span className="h-px w-10 bg-[#dcb6be]" />
         <span>✿</span>
-        <span className="h-px w-10 bg-[#f0b4d0]" />
+        <span className="h-px w-10 bg-[#dcb6be]" />
       </div>
 
-      <h2 className="mt-4 font-serif text-4xl font-medium text-[#6b2d4f] sm:text-6xl">
+      <h2 className="mt-4 font-serif text-3xl font-normal text-[#633d4c] sm:text-5xl">
         {title}
       </h2>
 
       <h3
         lang="ur"
         dir="rtl"
-        className="mt-3 font-urdu text-2xl text-[#6b2d4f] sm:text-3xl"
+        className="mt-3 font-urdu text-2xl text-[#633d4c] sm:text-3xl"
       >
         {titleUrdu}
       </h3>
 
-      <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#8a5a74]">
+      <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#856e76]">
         {description}
       </p>
 
       <p
         lang="ur"
         dir="rtl"
-        className="mx-auto mt-2 max-w-xl font-urdu text-sm leading-8 text-[#8a5a74]"
+        className="mx-auto mt-2 max-w-xl font-urdu text-sm leading-8 text-[#856e76]"
       >
         {descriptionUrdu}
       </p>
@@ -203,19 +232,15 @@ function SectionHeading({
 function FloralDivider() {
   return (
     <div
-      className="flex items-center justify-center gap-3 py-5 text-[#e86fa3]"
+      className="flex items-center justify-center gap-3 py-5 text-[#bd7e91]"
       aria-hidden="true"
     >
-      <span className="h-px w-12 bg-[#f5c6dc]" />
+      <span className="h-px w-12 bg-[#e8cbd1]" />
       <span className="text-lg">❀</span>
-      <span className="h-px w-12 bg-[#f5c6dc]" />
+      <span className="h-px w-12 bg-[#e8cbd1]" />
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  CALENDAR HELPERS                                                   */
-/* ------------------------------------------------------------------ */
 
 function formatCalendarDate(value: string) {
   return new Date(value)
@@ -266,7 +291,10 @@ function downloadCalendar(event: (typeof events)[number]) {
     "END:VCALENDAR",
   ].join("\r\n");
 
-  const blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
+  const blob = new Blob([content], {
+    type: "text/calendar;charset=utf-8",
+  });
+
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
 
@@ -280,351 +308,9 @@ function downloadCalendar(event: (typeof events)[number]) {
   window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-/* ------------------------------------------------------------------ */
-/*  SPLASH SCREEN (gates)                                              */
-/* ------------------------------------------------------------------ */
 
-const GATE_OPEN_MS = 1500;
 
-function WeddingSplashScreen({
-  onStart,
-  onOpen,
-}: {
-  /** Runs synchronously inside the tap (needed so the browser allows music). */
-  onStart: () => void;
-  onOpen: () => void;
-}) {
-  const [opening, setOpening] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // Lock page scroll while the cover is visible
-  useEffect(() => {
-    const prevBody = document.body.style.overflow;
-    const prevHtml = document.documentElement.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prevBody;
-      document.documentElement.style.overflow = prevHtml;
-    };
-  }, []);
-
-  useEffect(() => {
-    buttonRef.current?.focus({ preventScroll: true });
-  }, []);
-
-  function handleOpen() {
-    if (opening) return;
-    onStart(); // user gesture -> music can start
-    setOpening(true);
-    window.setTimeout(onOpen, GATE_OPEN_MS);
-  }
-
-  return (
-    <div
-      className={`wedding-gate fixed inset-0 z-[100] isolate flex items-center justify-center overflow-hidden text-center ${
-        opening ? "gate-opening" : ""
-      }`}
-      style={{ "--gate-photo": `url("${photos.hero}")` } as CSSProperties}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Wedding invitation of ${couple.groom} and ${couple.bride}`}
-    >
-      <div className="gate-glow gate-glow-one" />
-      <div className="gate-glow gate-glow-two" />
-      <div className="gate-frame" />
-      <div className="gate-frame-inner" />
-
-      <div className="gate-petals" aria-hidden="true">
-        {Array.from({ length: 16 }, (_, i) => (
-          <span
-            key={i}
-            style={{
-              left: `${(i * 37 + 8) % 96}%`,
-              animationDelay: `${(i % 7) * 0.65}s`,
-              animationDuration: `${7 + (i % 5) * 1.4}s`,
-            }}
-          >
-            {["✦", "❀", "♡", "✧"][i % 4]}
-          </span>
-        ))}
-      </div>
-
-      <div className="gate-content relative z-20 mx-auto flex w-full max-w-xl flex-col items-center px-7 py-8 sm:px-10">
-        <p className="gate-enter gate-eyebrow">TOGETHER WITH OUR FAMILIES</p>
-
-        <p
-          lang="ur"
-          dir="rtl"
-          className="gate-enter mt-2 font-urdu text-sm text-[#ffd9e8] sm:text-base"
-        >
-          اپنے خاندانوں کی دعاؤں کے ساتھ
-        </p>
-
-        <div className="gate-enter gate-emblem" aria-hidden="true">
-          <span>❧</span>
-          <span className="gate-emblem-heart">♡</span>
-          <span>❧</span>
-        </div>
-
-        <p className="gate-enter font-serif text-base italic tracking-widest text-[#ffe3ee] sm:text-lg">
-          The Wedding Invitation
-        </p>
-
-        <h1 className="gate-enter mt-4 w-full font-serif text-[clamp(2.2rem,9vw,4.6rem)] font-medium leading-tight text-white">
-          <span className="block break-words">{couple.bride}</span>
-          <span className="wedding-script my-1 block text-[clamp(2.8rem,11vw,5.2rem)] leading-none text-[#ffc2da]">
-            &amp;
-          </span>
-          <span className="block break-words">{couple.groom}</span>
-        </h1>
-
-        <p
-          lang="ur"
-          dir="rtl"
-          className="gate-enter mt-4 font-urdu text-xl leading-relaxed text-[#ffe3ee] sm:text-2xl"
-        >
-          {couple.brideUrdu} و {couple.groomUrdu}
-        </p>
-
-        <div className="gate-enter gate-date-divider" aria-hidden="true">
-          <span />
-          <span>✦</span>
-          <span />
-        </div>
-
-        <p className="gate-enter mt-2 font-serif text-xl italic text-[#ffe3ee] sm:text-2xl">
-          {couple.date}
-        </p>
-
-        <p
-          lang="ur"
-          dir="rtl"
-          className="gate-enter mt-1 font-urdu text-base text-white/90 sm:text-lg"
-        >
-          {couple.dateUrdu}
-        </p>
-
-        <button
-          ref={buttonRef}
-          type="button"
-          onClick={handleOpen}
-          disabled={opening}
-          className="gate-enter gate-open-button mt-7 w-full max-w-[300px] sm:mt-9"
-        >
-          <span aria-hidden="true">♡</span>
-          <span className="flex flex-col leading-snug">
-            <span>{opening ? "Opening..." : "Open Your Invitation"}</span>
-            <span
-              lang="ur"
-              dir="rtl"
-              className="font-urdu text-sm font-normal normal-case tracking-normal"
-            >
-              {opening ? "کھل رہا ہے..." : "دعوت نامہ کھولیں"}
-            </span>
-          </span>
-          <span aria-hidden="true">♡</span>
-        </button>
-
-        <p className="gate-enter mt-4 text-[10px] tracking-[0.12em] text-white/75 sm:text-xs">
-          A LITTLE INVITATION, A LIFETIME OF MEMORIES
-        </p>
-      </div>
-
-      <div className="gate-door gate-door-left" aria-hidden="true">
-        <div className="gate-door-border">
-          <div className="gate-door-ornament">
-            <span>❦</span>
-            <span>✧</span>
-            <span>❦</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="gate-door gate-door-right" aria-hidden="true">
-        <div className="gate-door-border">
-          <div className="gate-door-ornament">
-            <span>❦</span>
-            <span>✧</span>
-            <span>❦</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="gate-bottom-note" aria-hidden="true">
-        WITH LOVE &amp; BLESSINGS · 2027
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  REAL FIREWORKS (canvas)                                            */
-/* ------------------------------------------------------------------ */
-
-type Rocket = { x: number; y: number; vy: number; targetY: number; hue: number };
-type Spark = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  life: number;
-  decay: number;
-  hue: number;
-  size: number;
-};
-
-// Pink, rose, magenta, lavender and gold
-const FIREWORK_HUES = [330, 340, 320, 350, 285, 45];
-
-function FireworkEffect({
-  duration = 7000,
-  onDone,
-}: {
-  duration?: number;
-  onDone: () => void;
-}) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const onDoneRef = useRef(onDone);
-
-  useEffect(() => {
-    onDoneRef.current = onDone;
-  }, [onDone]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      onDoneRef.current();
-      return;
-    }
-
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let w = 0;
-    let h = 0;
-
-    const resize = () => {
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const rockets: Rocket[] = [];
-    const sparks: Spark[] = [];
-    const start = performance.now();
-    let lastLaunch = 0;
-    let raf = 0;
-
-    const launch = () => {
-      rockets.push({
-        x: w * (0.15 + Math.random() * 0.7),
-        y: h,
-        vy: -(h * 0.011 + Math.random() * 3),
-        targetY: h * (0.15 + Math.random() * 0.3),
-        hue: FIREWORK_HUES[Math.floor(Math.random() * FIREWORK_HUES.length)],
-      });
-    };
-
-    const explode = (x: number, y: number, hue: number) => {
-      const count = w < 500 ? 55 : 85;
-      for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.2;
-        const speed = 1.5 + Math.random() * 3.2;
-        sparks.push({
-          x,
-          y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          life: 1,
-          decay: 0.012 + Math.random() * 0.012,
-          hue: hue + (Math.random() * 16 - 8),
-          size: 1.2 + Math.random() * 1.5,
-        });
-      }
-    };
-
-    const frame = (now: number) => {
-      const elapsed = now - start;
-
-      // fade previous frame => glowing trails
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0,0,0,0.22)";
-      ctx.fillRect(0, 0, w, h);
-      ctx.globalCompositeOperation = "lighter";
-
-      if (elapsed < duration && now - lastLaunch > 650 + Math.random() * 500) {
-        launch();
-        if (Math.random() > 0.6) launch();
-        lastLaunch = now;
-      }
-
-      for (let i = rockets.length - 1; i >= 0; i--) {
-        const r = rockets[i];
-        r.y += r.vy;
-        r.vy *= 0.985;
-        ctx.beginPath();
-        ctx.arc(r.x, r.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = `hsl(${r.hue} 90% 78%)`;
-        ctx.fill();
-        if (r.y <= r.targetY || Math.abs(r.vy) < 1.2) {
-          explode(r.x, r.y, r.hue);
-          rockets.splice(i, 1);
-        }
-      }
-
-      for (let i = sparks.length - 1; i >= 0; i--) {
-        const s = sparks[i];
-        s.vx *= 0.985;
-        s.vy = s.vy * 0.985 + 0.035;
-        s.x += s.vx;
-        s.y += s.vy;
-        s.life -= s.decay;
-        if (s.life <= 0) {
-          sparks.splice(i, 1);
-          continue;
-        }
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsl(${s.hue} 95% ${58 + s.life * 20}% / ${s.life})`;
-        ctx.fill();
-      }
-
-      if (elapsed >= duration && rockets.length === 0 && sparks.length === 0) {
-        onDoneRef.current();
-        return;
-      }
-      raf = requestAnimationFrame(frame);
-    };
-
-    raf = requestAnimationFrame(frame);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, [duration]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[90]"
-    />
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  PAGE                                                               */
-/* ------------------------------------------------------------------ */
 
 export default function WeddingInvitation() {
   const [remaining, setRemaining] = useState({
@@ -682,18 +368,20 @@ export default function WeddingInvitation() {
     }
   }
 
-  // Called straight from the tap, so browsers allow audio playback.
-  function startMusic() {
-    const audio = musicRef.current;
-    if (!audio) return;
-    audio.volume = 0.65;
-    audio.play().catch(() => setMusicPlaying(false));
-  }
-
-  // Called after the gates have finished opening.
-  function openInvitation() {
+  async function openInvitation() {
     setInvitationOpened(true);
     setShowFx(true);
+
+    const audio = musicRef.current;
+    if (!audio) return;
+
+    try {
+      audio.volume = 0.65;
+      await audio.play();
+    } catch {
+      // The visitor can start music using the floating music button.
+      setMusicPlaying(false);
+    }
   }
 
   function submitRSVP(e: FormEvent<HTMLFormElement>) {
@@ -712,15 +400,16 @@ export default function WeddingInvitation() {
       `Dates in Urdu: ${couple.dateUrdu}`,
     ].join("\n");
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(rsvpText)}`;
+    const whatsappUrl =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(rsvpText)}`;
 
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   }
 
   return (
-    <main className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#fff5f9] text-[#6b2d4f] selection:bg-[#ffd0e3] selection:text-[#6b2d4f]">
+    <main className="min-h-screen w-full min-w-0 overflow-x-clip bg-[#fff8f7] text-[#633d4c] selection:bg-[#efd0d7] selection:text-[#633d4c]">
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
 
         html {
           scroll-behavior: smooth;
@@ -729,284 +418,48 @@ export default function WeddingInvitation() {
 
         body {
           margin: 0;
-          background: #fff5f9;
-        }
-
-        .font-serif {
-          font-family: "Cormorant Garamond", Georgia, serif;
+          background: #fff8f7;
         }
 
         .font-urdu {
-          font-family: "Noto Naskh Arabic", serif;
+          font-family: 'Noto Naskh Arabic', serif;
           line-height: 1.9;
         }
 
         .wedding-script {
-          font-family: "Great Vibes", "Brush Script MT", "Segoe Script", cursive;
+          font-family: 'Brush Script MT', 'Segoe Script', cursive;
         }
 
         .wedding-glass {
-          background: rgba(255, 250, 252, 0.92);
+          background: rgba(255, 250, 249, .91);
           backdrop-filter: blur(10px);
         }
 
         .floral-frame {
-          border: 1px solid rgba(240, 160, 195, 0.75);
-          box-shadow: 0 18px 60px rgba(214, 85, 138, 0.12);
+          border: 1px solid rgba(222, 174, 186, .9);
+          box-shadow: 0 18px 60px rgba(119, 66, 83, .08);
         }
 
-        /* ---------- Splash gate ---------- */
-        .wedding-gate::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          background-image: linear-gradient(
-              145deg,
-              rgba(86, 18, 64, 0.78),
-              rgba(200, 70, 135, 0.72)
-            ),
-            var(--gate-photo);
-          background-size: cover;
-          background-position: center;
-          transition: opacity 0.2s ease 0.35s;
-        }
-        .gate-opening::before {
+        .wedding-spark {
+          color: #f2c4cf;
           opacity: 0;
+          animation: wedding-spark 1.8s ease-in-out infinite;
+          text-shadow: 0 0 18px rgba(255, 220, 230, .9);
         }
 
-        .gate-glow {
-          position: absolute;
-          z-index: 1;
-          border-radius: 9999px;
-          filter: blur(60px);
-          pointer-events: none;
-          transition: opacity 0.4s ease;
-        }
-        .gate-glow-one {
-          width: 18rem;
-          height: 18rem;
-          top: -4rem;
-          left: -4rem;
-          background: rgba(255, 150, 200, 0.4);
-        }
-        .gate-glow-two {
-          width: 20rem;
-          height: 20rem;
-          bottom: -5rem;
-          right: -5rem;
-          background: rgba(200, 160, 255, 0.3);
-        }
-
-        .gate-frame,
-        .gate-frame-inner {
-          position: absolute;
-          z-index: 2;
-          pointer-events: none;
-          transition: opacity 0.4s ease;
-        }
-        .gate-frame {
-          inset: 14px;
-          border: 1px solid rgba(255, 220, 235, 0.55);
-        }
-        .gate-frame-inner {
-          inset: 22px;
-          border: 1px solid rgba(255, 220, 235, 0.22);
-        }
-
-        .gate-petals {
-          position: absolute;
-          inset: 0;
-          z-index: 3;
-          overflow: hidden;
-          pointer-events: none;
-          transition: opacity 0.4s ease;
-        }
-        .gate-petals span {
-          position: absolute;
-          bottom: -8%;
-          font-size: 14px;
-          color: rgba(255, 205, 225, 0.9);
-          opacity: 0;
-          animation: gate-float linear infinite;
-        }
-        @keyframes gate-float {
-          0% {
-            transform: translateY(0) rotate(0deg);
+        @keyframes wedding-spark {
+          0%, 100% {
             opacity: 0;
+            transform: scale(.4) rotate(0deg);
           }
-          15% {
-            opacity: 0.9;
-          }
-          100% {
-            transform: translateY(-110vh) rotate(180deg);
-            opacity: 0;
-          }
-        }
-
-        .gate-content {
-          transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .gate-opening .gate-content {
-          opacity: 0;
-          transform: scale(0.96);
-        }
-        .gate-opening .gate-glow,
-        .gate-opening .gate-frame,
-        .gate-opening .gate-frame-inner,
-        .gate-opening .gate-petals,
-        .gate-opening .gate-bottom-note {
-          opacity: 0;
-        }
-
-        .gate-enter {
-          opacity: 0;
-          animation: gate-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        .gate-enter:nth-child(1) { animation-delay: 0.1s; }
-        .gate-enter:nth-child(2) { animation-delay: 0.2s; }
-        .gate-enter:nth-child(3) { animation-delay: 0.3s; }
-        .gate-enter:nth-child(4) { animation-delay: 0.4s; }
-        .gate-enter:nth-child(5) { animation-delay: 0.55s; }
-        .gate-enter:nth-child(6) { animation-delay: 0.7s; }
-        .gate-enter:nth-child(7) { animation-delay: 0.8s; }
-        .gate-enter:nth-child(8) { animation-delay: 0.9s; }
-        .gate-enter:nth-child(9) { animation-delay: 1s; }
-        .gate-enter:nth-child(10) { animation-delay: 1.15s; }
-        .gate-enter:nth-child(11) { animation-delay: 1.3s; }
-        @keyframes gate-rise {
-          from {
-            opacity: 0;
-            transform: translateY(14px);
-          }
-          to {
+          45% {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1.35) rotate(45deg);
           }
-        }
-
-        .gate-eyebrow {
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.3em;
-          color: #ffd6e7;
-        }
-        .gate-emblem {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin: 1rem 0 0.5rem;
-          font-size: 1.4rem;
-          color: #ffc2da;
-        }
-        .gate-emblem-heart {
-          font-size: 1.8rem;
-          color: #fff;
-        }
-        .gate-date-divider {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-top: 1.25rem;
-          color: #ffc2da;
-        }
-        .gate-date-divider span:nth-child(odd) {
-          width: 3rem;
-          height: 1px;
-          background: rgba(255, 200, 225, 0.65);
-        }
-
-        .gate-open-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.75rem;
-          padding: 0.9rem 1.5rem;
-          border-radius: 9999px;
-          border: 1px solid rgba(255, 255, 255, 0.55);
-          background: linear-gradient(135deg, #ff80b3, #e0508f);
-          color: #fff;
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          box-shadow: 0 10px 30px rgba(224, 80, 143, 0.5);
-          cursor: pointer;
-          transition: filter 0.25s ease;
-        }
-        .gate-open-button:hover:not(:disabled),
-        .gate-open-button:focus-visible {
-          filter: brightness(1.1);
-        }
-        .gate-open-button:focus-visible {
-          outline: 2px solid #fff;
-          outline-offset: 4px;
-        }
-        .gate-open-button:disabled {
-          cursor: wait;
-        }
-
-        .gate-door {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 50%;
-          z-index: 10;
-          will-change: transform;
-          transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1) 0.35s;
-        }
-        .gate-door-left {
-          left: 0;
-          background: linear-gradient(135deg, #f98fba, #cf4a86 60%, #92295f);
-        }
-        .gate-door-right {
-          right: 0;
-          background: linear-gradient(225deg, #f98fba, #cf4a86 60%, #92295f);
-        }
-        .gate-opening .gate-door-left {
-          transform: translateX(-100%);
-        }
-        .gate-opening .gate-door-right {
-          transform: translateX(100%);
-        }
-        .gate-door-border {
-          position: absolute;
-          inset: 16px;
-          display: flex;
-          align-items: center;
-          border: 1px solid rgba(255, 232, 242, 0.5);
-        }
-        .gate-door-left .gate-door-border {
-          justify-content: flex-start;
-          padding-left: 1.5rem;
-        }
-        .gate-door-right .gate-door-border {
-          justify-content: flex-end;
-          padding-right: 1.5rem;
-        }
-        .gate-door-ornament {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          font-size: 1.5rem;
-          color: rgba(255, 238, 246, 0.85);
-        }
-        @media (max-width: 900px) {
-          .gate-door-ornament {
-            display: none;
+          75% {
+            opacity: .8;
+            transform: scale(.9) rotate(90deg);
           }
-        }
-
-        .gate-bottom-note {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 1.6rem;
-          z-index: 20;
-          font-size: 9px;
-          letter-spacing: 0.3em;
-          color: rgba(255, 228, 240, 0.7);
-          transition: opacity 0.4s ease;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1014,26 +467,34 @@ export default function WeddingInvitation() {
             scroll-behavior: auto;
           }
 
-          *,
-          *::before,
-          *::after {
-            animation-duration: 0.01ms !important;
+          *, *::before, *::after {
+            animation-duration: .01ms !important;
             animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            transition-delay: 0s !important;
-          }
-          .gate-enter {
-            opacity: 1;
+            transition-duration: .01ms !important;
           }
         }
       `}</style>
 
       {!invitationOpened && (
-        <WeddingSplashScreen onStart={startMusic} onOpen={openInvitation} />
+        <WeddingSplashScreen
+          bride={couple.bride}
+          groom={couple.groom}
+          onStart={() => {
+            const audio = musicRef.current;
+            if (audio) {
+              audio.volume = 0.9;
+              audio.play().catch(() => setMusicPlaying(false));
+            }
+          }}
+          onOpen={() => {
+            setInvitationOpened(true);
+            setShowFx(true);
+          }}
+        />
       )}
 
       {showFx && (
-        <FireworkEffect duration={7000} onDone={() => setShowFx(false)} />
+        <WeddingFireworks duration={7000} onDone={() => setShowFx(false)} />
       )}
 
       <audio
@@ -1072,146 +533,190 @@ export default function WeddingInvitation() {
         type="button"
         onClick={toggleMusic}
         aria-label={musicPlaying ? "Pause background music" : "Play background music"}
-        className="fixed bottom-5 right-3 z-50 rounded-full border border-white/70 bg-[#d03f7a]/95 px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-xl backdrop-blur transition hover:bg-[#b52f66] sm:right-5 sm:px-5"
+        className="fixed bottom-5 right-3 z-50 rounded-full border border-white/70 bg-[#8f5268]/95 px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-xl backdrop-blur transition hover:bg-[#6d3f51] sm:right-5 sm:px-5"
       >
         {musicPlaying ? "Ⅱ" : "♫"}
-        <span className="ml-2">{musicPlaying ? "Pause" : "Music"}</span>
+        
       </button>
 
       {/* Hero */}
+
       <section
         id="home"
-        className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-cover bg-center px-5 py-20 text-center text-white"
+        className="relative flex min-h-[100svh] w-full items-center justify-center overflow-x-clip bg-cover bg-center px-4 py-16 text-center text-white sm:px-6 sm:py-20"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(100,22,72,.62), rgba(214,85,138,.5)), url('${photos.hero}')`,
+          backgroundImage: `linear-gradient(135deg, rgba(35,12,24,.78), rgba(80,30,49,.68)), url('${photos.hero}')`,
         }}
       >
-        <div className="pointer-events-none absolute inset-4 border border-white/45 sm:inset-8" />
-        <div className="pointer-events-none absolute inset-6 border border-white/20 sm:inset-11" />
+        {/* Decorative borders */}
+        <div className="pointer-events-none absolute inset-2 border border-white/35 sm:inset-5 md:inset-8" />
+        <div className="pointer-events-none absolute inset-4 border border-white/15 sm:inset-8 md:inset-11" />
 
-        <div className="relative z-10 mx-auto w-full max-w-4xl">
-          <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#ffe3ee] sm:text-xs sm:tracking-[0.42em]">
+        {/* Main content */}
+        <div className="relative z-10 mx-auto flex w-full max-w-4xl min-w-0 flex-col items-center">
+          <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#ffe6e9] sm:text-xs sm:tracking-[0.4em]">
             A Love Story in Bloom
           </p>
 
-          <p lang="ur" dir="rtl" className="mt-3 font-urdu text-lg text-[#ffe3ee]">
+          <p
+            lang="ur"
+            dir="rtl"
+            className="mt-2 max-w-full font-urdu text-sm text-[#ffe6e9] sm:mt-3 sm:text-lg"
+          >
             محبت کی ایک خوبصورت داستان
           </p>
 
-          <div className="mx-auto mt-7 text-3xl text-[#ffc2da]">❀</div>
+          <div className="mx-auto mt-4 text-2xl text-[#f6d7dd] sm:mt-7 sm:text-3xl">
+            ❀
+          </div>
 
-          <p className="mt-4 font-serif text-2xl italic text-white/95 sm:text-4xl">
+          <p className="mt-3 font-serif text-base italic text-white/90 sm:mt-4 sm:text-2xl md:text-3xl">
             Together with our families
           </p>
 
-          <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-white/90">
+          <p
+            lang="ur"
+            dir="rtl"
+            className="mt-2 font-urdu text-sm text-white/90 sm:text-lg"
+          >
             اپنے خاندانوں کی دعاؤں کے ساتھ
           </p>
 
-          <h1 className="mt-7 font-serif text-5xl font-medium leading-tight sm:text-7xl md:text-8xl">
-            <span className="block break-words">{couple.bride}</span>
-            <span className="wedding-script my-2 block text-6xl text-[#ffc2da] sm:text-8xl">
+          {/* Couple names */}
+          <h1 className="mt-5 w-full min-w-0 font-serif font-normal leading-[1.15] sm:mt-7">
+            <span className="block break-words text-[clamp(2rem,8vw,5.5rem)]">
+              {couple.bride}
+            </span>
+
+            <span className="wedding-script my-1 block text-[clamp(2.5rem,9vw,4.5rem)] leading-tight text-[#f2c4cf] sm:my-2">
               &amp;
             </span>
-            <span className="block break-words">{couple.groom}</span>
+
+            <span className="block break-words text-[clamp(2rem,8vw,5.5rem)]">
+              {couple.groom}
+            </span>
           </h1>
 
-          <p lang="ur" dir="rtl" className="mt-5 font-urdu text-2xl text-[#ffe3ee] sm:text-3xl">
+          <p
+            lang="ur"
+            dir="rtl"
+            className="mt-4 max-w-full break-words font-urdu text-xl leading-relaxed text-[#ffe0e6] sm:mt-5 sm:text-3xl"
+          >
             {couple.brideUrdu} و {couple.groomUrdu}
           </p>
 
-          <div className="mx-auto mt-7 flex items-center justify-center gap-3 text-[#ffc2da]">
-            <span className="h-px w-12 bg-white/50" />
+          <div className="mx-auto mt-5 flex items-center justify-center gap-3 text-[#f2c4cf] sm:mt-7">
+            <span className="h-px w-8 bg-white/50 sm:w-12" />
             ♡
-            <span className="h-px w-12 bg-white/50" />
+            <span className="h-px w-8 bg-white/50 sm:w-12" />
           </div>
 
-          <p className="mt-6 text-[10px] uppercase tracking-[0.2em] sm:text-sm sm:tracking-[0.3em]">
+          <p className="mt-5 max-w-full text-[9px] uppercase leading-5 tracking-[0.12em] sm:mt-6 sm:text-sm sm:tracking-[0.3em]">
             Invite you to share our special days
           </p>
 
-          <p lang="ur" dir="rtl" className="mt-3 font-urdu text-base text-white/90 sm:text-lg">
+          <p
+            lang="ur"
+            dir="rtl"
+            className="mt-2 font-urdu text-sm leading-8 text-white/90 sm:text-lg"
+          >
             آپ کو ہماری خوشیوں میں شرکت کی دعوت دیتے ہیں
           </p>
 
-          <p className="mt-5 font-serif text-3xl italic text-[#ffe3ee] sm:text-4xl">
+          <p className="mt-4 max-w-full break-words font-serif text-xl italic leading-relaxed text-[#ffe0e6] sm:mt-5 sm:text-3xl">
             {couple.date}
           </p>
 
-          <p lang="ur" dir="rtl" className="mt-2 font-urdu text-xl text-[#ffe3ee]">
+          <p
+            lang="ur"
+            dir="rtl"
+            className="mt-2 font-urdu text-lg leading-relaxed text-[#ffe0e6] sm:text-xl"
+          >
             {couple.dateUrdu}
           </p>
 
+          {/* Explore button */}
           <a
             href="#events"
-            className="mt-9 inline-flex max-w-full items-center justify-center gap-3 rounded-full border border-white/75 bg-white/10 px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.15em] backdrop-blur transition hover:bg-white hover:text-[#b52f66] sm:px-9 sm:py-4 sm:text-xs"
+            className="mt-7 inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-full border border-white/65 bg-white/10 px-4 py-3 text-[9px] font-semibold uppercase tracking-[0.08em] backdrop-blur transition-colors hover:bg-white hover:text-[#744455] sm:mt-9 sm:gap-3 sm:px-9 sm:py-4 sm:text-xs sm:tracking-[0.15em]"
           >
-            <Bi en="Explore the celebrations ↓" ur="تقریبات کی تفصیل دیکھیں ↓" />
+            <Bi
+              en="Explore the celebrations ↓"
+              ur="تقریبات کی تفصیل دیکھیں ↓"
+            />
           </a>
         </div>
 
+        {/* Bottom scroll hint */}
         <a
           href="#story"
-          className="absolute bottom-5 left-1/2 -translate-x-1/2 text-center text-[9px] uppercase tracking-[0.25em] text-white/80"
+          className="absolute bottom-2 left-1/2 z-10 w-max max-w-[90%] -translate-x-1/2 text-center text-[8px] uppercase tracking-[0.16em] text-white/75 sm:bottom-5 sm:text-[9px] sm:tracking-[0.25em]"
         >
           <Bi en="Scroll to discover" ur="مزید تفصیل کے لیے نیچے جائیں" />
         </a>
 
-        <div className="pointer-events-none absolute -bottom-20 -left-16 h-64 w-64 rounded-full bg-[#ff9ec6]/25 blur-3xl" />
-        <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-[#d6b4ff]/25 blur-3xl" />
+        {/* Background glow */}
+        <div className="pointer-events-none absolute -bottom-20 -left-16 h-40 w-40 rounded-full bg-[#f1c7d1]/10 blur-3xl sm:h-64 sm:w-64" />
+
+        <div className="pointer-events-none absolute -right-16 -top-20 h-40 w-40 rounded-full bg-[#f1c7d1]/10 blur-3xl sm:h-64 sm:w-64" />
       </section>
+
 
       {/* Invitation */}
       <section
         id="story"
         className="relative w-full px-5 py-20 sm:py-28"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,245,249,.88), rgba(255,245,249,.95)), url('${photos.flowers}')`,
+          backgroundImage: `linear-gradient(rgba(255,248,247,.88), rgba(255,248,247,.95)), url('${photos.flowers}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="mx-auto w-full max-w-3xl rounded-t-[35%] rounded-b-[2rem] p-2 sm:rounded-t-[48%]">
           <div className="floral-frame wedding-glass rounded-t-[35%] rounded-b-[1.5rem] px-5 pb-10 pt-12 text-center sm:rounded-t-[48%] sm:px-16 sm:pb-16 sm:pt-20">
-            <p className="wedding-script text-5xl text-[#d6558a] sm:text-7xl">
+            <p className="wedding-script text-4xl text-[#b66f84] sm:text-6xl">
               With Love &amp; Blessings
             </p>
 
-            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-xl text-[#d6558a]">
+            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-xl text-[#b66f84]">
               محبت اور دعاؤں کے ساتھ
             </p>
 
-            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#d6558a]">
+            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#b46c82]">
               The Pleasure of Your Company
             </p>
 
-            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-sm text-[#d6558a]">
+            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-sm text-[#b46c82]">
               آپ کی شرکت ہمارے لیے باعثِ مسرت ہوگی
             </p>
 
-            <h2 className="mt-5 font-serif text-3xl italic text-[#6b2d4f] sm:text-5xl">
+            <h2 className="mt-5 font-serif text-3xl italic text-[#633d4c] sm:text-5xl">
               A Beautiful New Beginning
             </h2>
 
-            <h3 lang="ur" dir="rtl" className="mt-3 font-urdu text-2xl text-[#6b2d4f]">
+            <h3 lang="ur" dir="rtl" className="mt-3 font-urdu text-2xl text-[#633d4c]">
               ایک خوبصورت نئے سفر کا آغاز
             </h3>
 
             <FloralDivider />
 
-            <p className="mx-auto max-w-xl text-sm leading-8 text-[#8a5a74] sm:text-base">
-              With immense joy, we invite you to the wedding celebration of our beloved son, Hassan Jamal. Your presence and blessings will make these precious moments even more memorable.
+            <p className="mx-auto max-w-xl text-sm leading-8 text-[#856e76] sm:text-base">
+              With immense joy, we invite you to the wedding celebration of our beloved daughter, Misha Shehzadi. Your presence and blessings will make these precious moments even more memorable.
             </p>
 
-            <p lang="ur" dir="rtl" className="mx-auto mt-4 max-w-xl font-urdu text-base leading-9 text-[#8a5a74]">
-              نہایت خوشی کے ساتھ ہم آپ کو اپنے پیارے بیٹے حسن جمال کی شادی کی تقریبات میں شرکت کی دعوت دیتے ہیں۔ آپ کی موجودگی اور دعائیں ہماری خوشیوں کو دوبالا کر دیں گی۔
+            <p
+              lang="ur"
+              dir="rtl"
+              className="mx-auto mt-4 max-w-xl font-urdu text-base leading-9 text-[#856e76]"
+            >
+              نہایت خوشی کے ساتھ ہم آپ کو اپنی پیاری بیٹی {couple.brideUrdu} کی شادی کی تقریبات میں شرکت کی دعوت دیتے ہیں۔ آپ کی موجودگی اور دعائیں ہماری خوشیوں کو دوبالا کر دیں گی۔
             </p>
 
-            <p className="wedding-script mt-8 text-4xl text-[#c4407c] sm:text-5xl">
+            <p className="wedding-script mt-8 text-3xl text-[#a85e77] sm:text-4xl">
               {couple.bride} &amp; {couple.groom}
             </p>
 
-            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-2xl text-[#c4407c]">
+            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-2xl text-[#a85e77]">
               {couple.brideUrdu} و {couple.groomUrdu}
             </p>
           </div>
@@ -1222,23 +727,23 @@ export default function WeddingInvitation() {
       <section
         className="relative w-full overflow-hidden px-5 py-20 text-center sm:py-28"
         style={{
-          backgroundImage: `linear-gradient(rgba(176,52,112,.9), rgba(120,32,84,.93)), url('${photos.table}')`,
+          backgroundImage: `linear-gradient(rgba(100,49,68,.9), rgba(70,34,49,.93)), url('${photos.table}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full border border-white/15" />
-        <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full border border-white/15" />
+        <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full border border-white/10" />
+        <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full border border-white/10" />
 
-        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ffc2da] sm:text-xs">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#f2c4cf] sm:text-xs">
           Save the Date
         </p>
 
-        <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#ffc2da]">
+        <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#f2c4cf]">
           تاریخ یاد رکھیے
         </p>
 
-        <h2 className="mt-5 font-serif text-4xl font-medium text-white sm:text-6xl">
+        <h2 className="mt-5 font-serif text-3xl text-white sm:text-5xl">
           Until We Say I Do
         </h2>
 
@@ -1246,7 +751,7 @@ export default function WeddingInvitation() {
           ہماری شادی میں باقی وقت
         </h3>
 
-        <p className="mt-3 font-serif text-xl italic text-white/80">
+        <p className="mt-3 font-serif text-lg italic text-white/70">
           The Countdown to Our Forever
         </p>
 
@@ -1261,13 +766,13 @@ export default function WeddingInvitation() {
           ).map(([label, labelUrdu, value]) => (
             <div
               key={label}
-              className="min-w-0 rounded-xl border border-white/25 bg-white/12 px-1 py-5 backdrop-blur-sm sm:rounded-3xl sm:py-8"
+              className="min-w-0 rounded-xl border border-white/20 bg-white/10 px-1 py-5 backdrop-blur-sm sm:rounded-3xl sm:py-8"
             >
-              <p className="font-serif text-2xl font-medium text-white sm:text-5xl">
+              <p className="font-serif text-xl text-white sm:text-5xl">
                 {String(value).padStart(2, "0")}
               </p>
 
-              <p className="mt-2 text-[8px] font-semibold uppercase tracking-[0.08em] text-[#ffc2da] sm:mt-4 sm:text-[10px] sm:tracking-[0.2em]">
+              <p className="mt-2 text-[8px] font-semibold uppercase tracking-[0.08em] text-[#f2c4cf] sm:mt-4 sm:text-[10px] sm:tracking-[0.2em]">
                 {label}
               </p>
 
@@ -1278,11 +783,11 @@ export default function WeddingInvitation() {
           ))}
         </div>
 
-        <p className="mt-8 font-serif text-xl italic text-white/85">
+        <p className="mt-8 font-serif text-lg italic text-white/75">
           We cannot wait to celebrate with you.
         </p>
 
-        <p lang="ur" dir="rtl" className="mt-3 font-urdu text-lg text-white/80">
+        <p lang="ur" dir="rtl" className="mt-3 font-urdu text-lg text-white/75">
           ہمیں آپ کے ساتھ خوشیاں منانے کا بے صبری سے انتظار ہے۔
         </p>
       </section>
@@ -1302,9 +807,9 @@ export default function WeddingInvitation() {
           {events.map((event) => (
             <article
               key={event.title}
-              className="group flex min-w-0 flex-col overflow-hidden rounded-t-[7rem] rounded-b-3xl border border-[#f8d4e4] bg-white shadow-[0_12px_40px_rgba(214,85,138,.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(214,85,138,.22)]"
+              className="group flex min-w-0 flex-col overflow-hidden rounded-t-[7rem] rounded-b-3xl border border-[#efd9de] bg-white shadow-[0_12px_40px_rgba(113,63,79,.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(113,63,79,.15)]"
             >
-              <div className="relative h-64 overflow-hidden bg-[#fde9f2]">
+              <div className="relative h-64 overflow-hidden bg-[#f7e8eb]">
                 <img
                   src={event.image}
                   alt={`${event.title} wedding celebration`}
@@ -1316,7 +821,7 @@ export default function WeddingInvitation() {
                   }}
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#5a1946]/70 via-transparent to-[#5a1946]/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3c1c2b]/70 via-transparent to-[#3c1c2b]/10" />
 
                 <span className="absolute bottom-5 left-0 right-0 text-center font-serif text-4xl text-white">
                   {event.symbol}
@@ -1324,48 +829,51 @@ export default function WeddingInvitation() {
               </div>
 
               <div className="flex flex-1 flex-col px-5 pb-7 pt-6 sm:px-7">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#d6558a]">
-                  {new Date(`${event.date}T12:00:00`).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                    timeZone: "Asia/Karachi",
-                  })}
+                <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#b46c82]">
+                  {new Date(`${event.date}T12:00:00`).toLocaleDateString(
+                    "en-US",
+                    {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                      timeZone: "Asia/Karachi",
+                    },
+                  )}
                 </p>
 
-                <h3 className="mt-2 font-serif text-3xl font-medium text-[#6b2d4f]">
+                <h3 className="mt-2 font-serif text-3xl text-[#633d4c]">
                   {event.title}
                 </h3>
 
-                <h4 lang="ur" dir="rtl" className="mt-2 font-urdu text-2xl text-[#6b2d4f]">
+                <h4 lang="ur" dir="rtl" className="mt-2 font-urdu text-2xl text-[#633d4c]">
                   {event.titleUrdu}
                 </h4>
 
-                <p className="mt-3 text-sm leading-6 text-[#8a5a74]">
+                <p className="mt-3 text-sm leading-6 text-[#856e76]">
                   {event.description}
                 </p>
 
-                <p lang="ur" dir="rtl" className="mt-2 font-urdu text-sm leading-8 text-[#8a5a74]">
+                <p lang="ur" dir="rtl" className="mt-2 font-urdu text-sm leading-8 text-[#856e76]">
                   {event.descriptionUrdu}
                 </p>
 
-                <div className="mt-5 space-y-4 border-t border-[#f9dce9] pt-5 text-sm leading-6 text-[#7a4a66]">
+                <div className="mt-5 space-y-4 border-t border-[#f1e2e5] pt-5 text-sm leading-6 text-[#725761]">
                   <div className="flex min-w-0 items-start gap-3">
-                    <span className="shrink-0 text-lg text-[#d6558a]">◷</span>
+                    <span className="shrink-0 text-lg text-[#b46c82]">◷</span>
                     <div className="min-w-0">
                       <Bi en={event.time} ur={event.timeUrdu} />
                     </div>
                   </div>
 
                   <div className="flex min-w-0 items-start gap-3">
-                    <span className="shrink-0 text-lg text-[#d6558a]">⌖</span>
+                    <span className="shrink-0 text-lg text-[#b46c82]">⌖</span>
                     <div className="min-w-0 break-words">
                       <Bi en={event.venue} ur={event.venueUrdu} />
                     </div>
                   </div>
 
                   <div className="flex min-w-0 items-start gap-3">
-                    <span className="shrink-0 text-lg text-[#d6558a]">✧</span>
+                    <span className="shrink-0 text-lg text-[#b46c82]">✧</span>
                     <div className="min-w-0">
                       <Bi en={event.dress} ur={event.dressUrdu} />
                     </div>
@@ -1377,7 +885,7 @@ export default function WeddingInvitation() {
                     href={googleCalendarUrl(event)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full bg-[#d03f7a] px-4 py-3 text-center text-[10px] font-semibold uppercase tracking-wider text-white transition hover:bg-[#b52f66]"
+                    className="rounded-full bg-[#96566c] px-4 py-3 text-center text-[10px] font-semibold uppercase tracking-wider text-white transition hover:bg-[#744052]"
                   >
                     <Bi en="+ Google Calendar" ur="+ گوگل کیلنڈر میں شامل کریں" />
                   </a>
@@ -1385,7 +893,7 @@ export default function WeddingInvitation() {
                   <button
                     type="button"
                     onClick={() => downloadCalendar(event)}
-                    className="rounded-full border border-[#f0b4d0] px-4 py-3 text-[10px] font-semibold uppercase tracking-wider text-[#c4407c] transition hover:bg-[#ffeaf3]"
+                    className="rounded-full border border-[#dfb9c3] px-4 py-3 text-[10px] font-semibold uppercase tracking-wider text-[#96566c] transition hover:bg-[#fff0f2]"
                   >
                     <Bi en="Download .ics" ur="کیلنڈر فائل ڈاؤن لوڈ کریں" />
                   </button>
@@ -1395,11 +903,11 @@ export default function WeddingInvitation() {
           ))}
         </div>
 
-        <p className="mx-auto mt-7 max-w-xl text-center text-xs leading-6 text-[#9a6e86]">
+        <p className="mx-auto mt-7 max-w-xl text-center text-xs leading-6 text-[#987f87]">
           Google Calendar opens a pre-filled event. The .ics file works with Apple Calendar, Outlook and other compatible calendar apps.
         </p>
 
-        <p lang="ur" dir="rtl" className="mx-auto mt-3 max-w-xl text-center font-urdu text-sm leading-8 text-[#9a6e86]">
+        <p lang="ur" dir="rtl" className="mx-auto mt-3 max-w-xl text-center font-urdu text-sm leading-8 text-[#987f87]">
           گوگل کیلنڈر میں تقریب کی تفصیلات پہلے سے درج ہوں گی۔ آئی سی ایس فائل ایپل کیلنڈر، آؤٹ لک اور دیگر مطابقت رکھنے والی ایپس میں استعمال کی جا سکتی ہے۔
         </p>
       </section>
@@ -1409,7 +917,7 @@ export default function WeddingInvitation() {
         id="families"
         className="w-full px-4 py-20 sm:px-5 sm:py-28"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,234,243,.9), rgba(255,245,249,.95)), url('${photos.flowers}')`,
+          backgroundImage: `linear-gradient(rgba(255,240,242,.9), rgba(255,248,247,.95)), url('${photos.flowers}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -1425,89 +933,89 @@ export default function WeddingInvitation() {
 
         <div className="mx-auto grid w-full max-w-5xl gap-6 md:grid-cols-2">
           <article className="floral-frame min-w-0 rounded-t-[8rem] rounded-b-3xl bg-white/90 px-6 pb-10 pt-12 text-center backdrop-blur sm:rounded-t-[10rem] sm:px-10">
-            <p className="text-3xl text-[#e86fa3]">❦</p>
+            <p className="text-3xl text-[#bd7e91]">❦</p>
 
-            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#d6558a]">
+            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#b46c82]">
               The Bride&apos;s Family
             </p>
 
-            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#d6558a]">
+            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#b46c82]">
               دلہن کا خاندان
             </p>
 
-            <h3 className="mt-4 font-serif text-3xl font-medium text-[#6b2d4f]">
+            <h3 className="mt-4 font-serif text-3xl text-[#633d4c]">
               {couple.bride}
             </h3>
 
-            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-2xl text-[#6b2d4f]">
+            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-2xl text-[#633d4c]">
               {couple.brideUrdu}
             </p>
 
             <FloralDivider />
 
-            <p className="font-serif text-xl italic text-[#8a5a74]">Daughter of</p>
-            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-base text-[#8a5a74]">بیٹی</p>
+            <p className="font-serif text-lg italic text-[#856e76]">Daughter of</p>
+            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-base text-[#856e76]">بیٹی</p>
 
-            <p className="mt-3 text-sm text-[#8a5a74]">Muhammad Nasir</p>
-            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#8a5a74]">محمد ناصر</p>
+            <p className="mt-3 text-sm text-[#856e76]">Muhammad Nasir</p>
+            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#856e76]">محمد ناصر</p>
 
-            <p className="mt-2 text-sm text-[#8a5a74]">Zohra Yasmin</p>
-            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#8a5a74]">زہرہ یاسمین</p>
+            <p className="mt-2 text-sm text-[#856e76]">Zohra Yasmin</p>
+            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#856e76]">زہرہ یاسمین</p>
 
-            <p className="mt-5 text-sm italic leading-7 text-[#9a6e86]">
+            <p className="mt-5 text-sm italic leading-7 text-[#987f87]">
               With their love and blessings, she begins a beautiful new chapter.
             </p>
 
-            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-sm leading-8 text-[#9a6e86]">
+            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-sm leading-8 text-[#987f87]">
               والدین کی محبت اور دعاؤں کے ساتھ وہ اپنی زندگی کے نئے سفر کا آغاز کرتی ہیں۔
             </p>
           </article>
 
           <article className="floral-frame min-w-0 rounded-t-[8rem] rounded-b-3xl bg-white/90 px-6 pb-10 pt-12 text-center backdrop-blur sm:rounded-t-[10rem] sm:px-10">
-            <p className="text-3xl text-[#e86fa3]">❦</p>
+            <p className="text-3xl text-[#bd7e91]">❦</p>
 
-            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#d6558a]">
+            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#b46c82]">
               The Groom&apos;s Family
             </p>
 
-            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#d6558a]">
+            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#b46c82]">
               دلہا کا خاندان
             </p>
 
-            <h3 className="mt-4 font-serif text-3xl font-medium text-[#6b2d4f]">
+            <h3 className="mt-4 font-serif text-3xl text-[#633d4c]">
               {couple.groom}
             </h3>
 
-            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-2xl text-[#6b2d4f]">
+            <p lang="ur" dir="rtl" className="mt-2 font-urdu text-2xl text-[#633d4c]">
               {couple.groomUrdu}
             </p>
 
             <FloralDivider />
 
-            <p className="font-serif text-xl italic text-[#8a5a74]">Son of</p>
-            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-base text-[#8a5a74]">بیٹا</p>
+            <p className="font-serif text-lg italic text-[#856e76]">Son of</p>
+            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-base text-[#856e76]">بیٹا</p>
 
-            <p className="mt-3 text-sm text-[#8a5a74]">Muhammad Jamal</p>
-            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#8a5a74]">محمد جمال</p>
+            <p className="mt-3 text-sm text-[#856e76]">Muhammad Jamal</p>
+            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#856e76]">محمد جمال</p>
 
-            <p className="mt-2 text-sm text-[#8a5a74]">Ghulam Fatima</p>
-            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#8a5a74]">غلام فاطمہ</p>
+            <p className="mt-2 text-sm text-[#856e76]">Ghulam Fatima</p>
+            <p lang="ur" dir="rtl" className="mt-1 font-urdu text-lg text-[#856e76]">غلام فاطمہ</p>
 
-            <p className="mt-5 text-sm italic leading-7 text-[#9a6e86]">
+            <p className="mt-5 text-sm italic leading-7 text-[#987f87]">
               With their love and blessings, he begins a beautiful new chapter.
             </p>
 
-            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-sm leading-8 text-[#9a6e86]">
+            <p lang="ur" dir="rtl" className="mt-3 font-urdu text-sm leading-8 text-[#987f87]">
               والدین کی محبت اور دعاؤں کے ساتھ وہ اپنی زندگی کے نئے سفر کا آغاز کرتے ہیں۔
             </p>
           </article>
         </div>
 
-        <p className="mt-8 text-center font-serif text-2xl italic text-[#c4407c]">
+        <p className="mt-8 text-center font-serif text-xl italic text-[#9c687a]">
           Two Families United by Love
         </p>
 
-        <p lang="ur" dir="rtl" className="mt-3 text-center font-urdu text-xl text-[#c4407c]">
+        <p lang="ur" dir="rtl" className="mt-3 text-center font-urdu text-xl text-[#9c687a]">
           محبت کے رشتے میں بندھے دو خاندان
         </p>
       </section>
@@ -1525,14 +1033,16 @@ export default function WeddingInvitation() {
 
         <div className="mx-auto grid w-full max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
           {venueCards.map((venue) => {
-            const event = events.find((item) => item.title === venue.eventTitle);
+            const event = events.find(
+              (item) => item.title === venue.eventTitle,
+            );
 
             return (
               <article
                 key={venue.eventTitle}
-                className="flex min-w-0 flex-col overflow-hidden rounded-3xl border border-[#f8d4e4] bg-white shadow-[0_12px_40px_rgba(214,85,138,.1)]"
+                className="flex min-w-0 flex-col overflow-hidden rounded-3xl border border-[#efd9de] bg-white shadow-[0_12px_40px_rgba(113,63,79,.07)]"
               >
-                <div className="relative h-56 overflow-hidden bg-[#fde9f2]">
+                <div className="relative h-56 overflow-hidden bg-[#f7e8eb]">
                   <iframe
                     title={`${venue.venueName} Google Maps`}
                     src={`https://maps.google.com/maps?q=${encodeURIComponent(venue.mapQuery)}&z=17&output=embed`}
@@ -1541,47 +1051,49 @@ export default function WeddingInvitation() {
                     referrerPolicy="no-referrer-when-downgrade"
                   />
 
-                  <span className="absolute left-3 top-3 max-w-[90%] rounded-full border border-white/70 bg-white/95 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#c4407c] sm:left-4 sm:px-4">
+                  <span className="absolute left-3 top-3 max-w-[90%] rounded-full border border-white/70 bg-white/95 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#96566c] sm:left-4 sm:px-4">
                     {venue.accent}
                   </span>
                 </div>
 
                 <div className="flex flex-1 flex-col px-5 py-7 text-center sm:px-6">
-                  <p className="font-serif text-sm italic tracking-[0.2em] text-[#e07aa5]">
+                  <p className="font-serif text-sm italic tracking-[0.2em] text-[#bd7e91]">
                     — {venue.number} —
                   </p>
 
-                  <h3 className="mt-3 font-serif text-3xl font-medium text-[#6b2d4f]">
+                  <h3 className="mt-3 font-serif text-2xl text-[#633d4c]">
                     {venue.eventTitle}
                   </h3>
 
-                  <h4 lang="ur" dir="rtl" className="mt-2 font-urdu text-xl text-[#6b2d4f]">
+                  <h4 lang="ur" dir="rtl" className="mt-2 font-urdu text-xl text-[#633d4c]">
                     {event?.titleUrdu}
                   </h4>
 
                   <FloralDivider />
 
-                  <h5 className="text-sm font-semibold leading-relaxed text-[#7a4a66]">
+                  <h5 className="text-sm font-semibold leading-relaxed text-[#725761]">
                     {venue.venueName}
                   </h5>
 
-                  <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#7a4a66]">
+                  <p lang="ur" dir="rtl" className="mt-2 font-urdu text-lg text-[#725761]">
                     {venue.venueUrdu}
                   </p>
 
-                  <p className="mt-2 text-sm text-[#9a6e86]">{venue.address}</p>
+                  <p className="mt-2 text-sm text-[#987f87]">
+                    {venue.address}
+                  </p>
 
-                  <p lang="ur" dir="rtl" className="mt-1 font-urdu text-sm text-[#9a6e86]">
+                  <p lang="ur" dir="rtl" className="mt-1 font-urdu text-sm text-[#987f87]">
                     {venue.addressUrdu}
                   </p>
 
                   {event && (
-                    <div className="mt-5 border-t border-[#f9dce9] pt-4">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d6558a]">
+                    <div className="mt-5 border-t border-[#f1e2e5] pt-4">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b46c82]">
                         Event Details
                       </p>
 
-                      <p lang="ur" dir="rtl" className="mt-2 font-urdu text-sm text-[#d6558a]">
+                      <p lang="ur" dir="rtl" className="mt-2 font-urdu text-sm text-[#b46c82]">
                         تقریب کی تفصیل
                       </p>
 
@@ -1599,7 +1111,7 @@ export default function WeddingInvitation() {
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue.mapQuery)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#d03f7a] px-5 py-3.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-[#b52f66]"
+                    className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#96566c] px-5 py-3.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-[#744052]"
                   >
                     <Bi en="Get Directions ↗" ur="راستہ دیکھیں ↗" />
                   </a>
@@ -1609,11 +1121,11 @@ export default function WeddingInvitation() {
           })}
         </div>
 
-        <p className="mt-9 text-center font-serif text-2xl italic text-[#c4407c]">
+        <p className="mt-9 text-center font-serif text-lg italic text-[#9c687a]">
           Your presence will make our celebrations even more special.
         </p>
 
-        <p lang="ur" dir="rtl" className="mt-3 text-center font-urdu text-lg text-[#c4407c]">
+        <p lang="ur" dir="rtl" className="mt-3 text-center font-urdu text-lg text-[#9c687a]">
           آپ کی شرکت ہماری خوشیوں کو مزید خاص بنا دے گی۔
         </p>
       </section>
@@ -1623,7 +1135,7 @@ export default function WeddingInvitation() {
         id="contact"
         className="w-full px-4 py-20 sm:px-5 sm:py-28"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,234,243,.9), rgba(255,245,249,.96)), url('${photos.flowers}')`,
+          backgroundImage: `linear-gradient(rgba(255,240,242,.9), rgba(255,248,247,.96)), url('${photos.flowers}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -1643,7 +1155,7 @@ export default function WeddingInvitation() {
         >
           <label
             htmlFor="guest-name"
-            className="mb-2 block text-sm font-semibold text-[#a4507a]"
+            className="mb-2 block text-sm font-semibold text-[#8f6574]"
           >
             <Bi en="Your Name" ur="آپ کا نام" />
           </label>
@@ -1655,19 +1167,22 @@ export default function WeddingInvitation() {
             required
             maxLength={100}
             placeholder="Enter your full name"
-            className="mb-6 w-full min-w-0 rounded-xl border border-[#f5cfe0] bg-[#fffafc] px-4 py-3.5 text-sm text-[#6b2d4f] outline-none transition placeholder:text-[#c9a5b8] focus:border-[#e0508f] focus:ring-2 focus:ring-[#ffd9e8]"
+            className="mb-6 w-full min-w-0 rounded-xl border border-[#ecd4da] bg-[#fffafa] px-4 py-3.5 text-sm text-[#633d4c] outline-none transition placeholder:text-[#bba5ac] focus:border-[#b46c82] focus:ring-2 focus:ring-[#f5e0e5]"
           />
 
-          <p className="mb-3 text-sm font-semibold text-[#a4507a]">
-            <Bi en="Will you be joining us?" ur="کیا آپ تقریب میں شرکت کریں گے؟" />
+          <p className="mb-3 text-sm font-semibold text-[#8f6574]">
+            <Bi
+              en="Will you be joining us?"
+              ur="کیا آپ تقریب میں شرکت کریں گے؟"
+            />
           </p>
 
           <div className="mb-6 grid gap-3 sm:grid-cols-2">
             <label
               className={`flex min-w-0 cursor-pointer items-start gap-3 rounded-xl border p-4 text-sm transition ${
                 attendance === "yes"
-                  ? "border-[#e07aa5] bg-[#ffeaf3] text-[#b52f66]"
-                  : "border-[#f5cfe0] text-[#8a5a74]"
+                  ? "border-[#bd7e91] bg-[#fff0f3] text-[#744052]"
+                  : "border-[#ecd4da] text-[#856e76]"
               }`}
             >
               <input
@@ -1676,19 +1191,22 @@ export default function WeddingInvitation() {
                 value="yes"
                 checked={attendance === "yes"}
                 onChange={() => setAttendance("yes")}
-                className="mt-1 shrink-0 accent-[#d03f7a]"
+                className="mt-1 shrink-0 accent-[#96566c]"
               />
 
               <span className="min-w-0">
-                <Bi en="Joyfully accepts" ur="خوشی سے شرکت کریں گے" />
+                <Bi
+                  en="Joyfully accepts"
+                  ur="خوشی سے شرکت کریں گے"
+                />
               </span>
             </label>
 
             <label
               className={`flex min-w-0 cursor-pointer items-start gap-3 rounded-xl border p-4 text-sm transition ${
                 attendance === "no"
-                  ? "border-[#e07aa5] bg-[#ffeaf3] text-[#b52f66]"
-                  : "border-[#f5cfe0] text-[#8a5a74]"
+                  ? "border-[#bd7e91] bg-[#fff0f3] text-[#744052]"
+                  : "border-[#ecd4da] text-[#856e76]"
               }`}
             >
               <input
@@ -1697,7 +1215,7 @@ export default function WeddingInvitation() {
                 value="no"
                 checked={attendance === "no"}
                 onChange={() => setAttendance("no")}
-                className="mt-1 shrink-0 accent-[#d03f7a]"
+                className="mt-1 shrink-0 accent-[#96566c]"
               />
 
               <span className="min-w-0">
@@ -1713,16 +1231,19 @@ export default function WeddingInvitation() {
             <>
               <label
                 htmlFor="guest-count"
-                className="mb-2 block text-sm font-semibold text-[#a4507a]"
+                className="mb-2 block text-sm font-semibold text-[#8f6574]"
               >
-                <Bi en="Number of Guests" ur="مہمانوں کی تعداد" />
+                <Bi
+                  en="Number of Guests"
+                  ur="مہمانوں کی تعداد"
+                />
               </label>
 
               <select
                 id="guest-count"
                 value={guestCount}
                 onChange={(e) => setGuestCount(e.target.value)}
-                className="mb-6 w-full min-w-0 rounded-xl border border-[#f5cfe0] bg-[#fffafc] px-4 py-3.5 text-sm text-[#6b2d4f] outline-none focus:border-[#e0508f]"
+                className="mb-6 w-full min-w-0 rounded-xl border border-[#ecd4da] bg-[#fffafa] px-4 py-3.5 text-sm text-[#633d4c] outline-none focus:border-[#b46c82]"
               >
                 {["1", "2", "3", "4", "5", "6"].map((count) => (
                   <option key={count} value={count}>
@@ -1735,9 +1256,12 @@ export default function WeddingInvitation() {
 
           <label
             htmlFor="guest-message"
-            className="mb-2 block text-sm font-semibold text-[#a4507a]"
+            className="mb-2 block text-sm font-semibold text-[#8f6574]"
           >
-            <Bi en="A Little Message (Optional)" ur="اپنا پیغام لکھیں (اختیاری)" />
+            <Bi
+              en="A Little Message (Optional)"
+              ur="اپنا پیغام لکھیں (اختیاری)"
+            />
           </label>
 
           <textarea
@@ -1747,12 +1271,12 @@ export default function WeddingInvitation() {
             rows={4}
             maxLength={1000}
             placeholder="Write a message for the couple..."
-            className="mb-6 w-full min-w-0 resize-y rounded-xl border border-[#f5cfe0] bg-[#fffafc] px-4 py-3.5 text-sm text-[#6b2d4f] outline-none transition placeholder:text-[#c9a5b8] focus:border-[#e0508f] focus:ring-2 focus:ring-[#ffd9e8]"
+            className="mb-6 w-full min-w-0 resize-y rounded-xl border border-[#ecd4da] bg-[#fffafa] px-4 py-3.5 text-sm text-[#633d4c] outline-none transition placeholder:text-[#bba5ac] focus:border-[#b46c82] focus:ring-2 focus:ring-[#f5e0e5]"
           />
 
           <button
             type="submit"
-            className="w-full rounded-full bg-[#d03f7a] px-5 py-4 text-sm font-semibold text-white shadow-md transition hover:bg-[#b52f66]"
+            className="w-full rounded-full bg-[#96566c] px-5 py-4 text-sm font-semibold text-white shadow-md transition hover:bg-[#744052]"
           >
             <Bi
               en="Send RSVP via WhatsApp ♡"
@@ -1760,11 +1284,11 @@ export default function WeddingInvitation() {
             />
           </button>
 
-          <p className="mt-4 text-center text-xs leading-6 text-[#9a6e86]">
+          <p className="mt-4 text-center text-xs leading-6 text-[#987f87]">
             WhatsApp will open with your RSVP details prepared. Please review and press Send.
           </p>
 
-          <p lang="ur" dir="rtl" className="mt-2 text-center font-urdu text-sm leading-8 text-[#9a6e86]">
+          <p lang="ur" dir="rtl" className="mt-2 text-center font-urdu text-sm leading-8 text-[#987f87]">
             واٹس ایپ پر آپ کے جواب کی تفصیلات تیار ہو جائیں گی۔ براہِ کرم پیغام دیکھ کر بھیج دیں۔
           </p>
         </form>
@@ -1774,35 +1298,35 @@ export default function WeddingInvitation() {
       <footer
         className="relative w-full overflow-hidden bg-cover bg-center px-5 py-24 text-center text-white sm:py-32"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(100,22,72,.86), rgba(190,64,126,.88)), url('${photos.hero}')`,
+          backgroundImage: `linear-gradient(135deg, rgba(57,27,42,.86), rgba(111,54,73,.9)), url('${photos.hero}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="pointer-events-none absolute inset-4 border border-white/25 sm:inset-8" />
+        <div className="pointer-events-none absolute inset-4 border border-white/20 sm:inset-8" />
 
         <div className="relative z-10 mx-auto max-w-3xl">
-          <p className="wedding-script text-5xl text-[#ffc2da] sm:text-7xl">
+          <p className="wedding-script text-4xl text-[#f2c4cf] sm:text-6xl">
             And So, Forever Begins
           </p>
 
-          <p lang="ur" dir="rtl" className="mt-4 font-urdu text-2xl text-[#ffc2da]">
+          <p lang="ur" dir="rtl" className="mt-4 font-urdu text-2xl text-[#f2c4cf]">
             اور یوں ہمیشہ کے سفر کا آغاز ہوتا ہے
           </p>
 
-          <div className="mx-auto mt-5 text-2xl text-[#ffc2da]">❀</div>
+          <div className="mx-auto mt-5 text-2xl text-[#f2c4cf]">❀</div>
 
-          <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#ffc2da]">
+          <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#f2c4cf]">
             One Love. One Promise.
           </p>
 
-          <p lang="ur" dir="rtl" className="mt-3 font-urdu text-lg text-[#ffc2da]">
+          <p lang="ur" dir="rtl" className="mt-3 font-urdu text-lg text-[#f2c4cf]">
             ایک محبت، ایک وعدہ
           </p>
 
-          <h2 className="mt-6 font-serif text-4xl italic sm:text-6xl">
+          <h2 className="mt-6 font-serif text-3xl italic sm:text-6xl">
             {couple.bride}
-            <span className="text-[#ffc2da]"> &amp; </span>
+            <span className="text-[#f2c4cf]"> &amp; </span>
             {couple.groom}
           </h2>
 
@@ -1810,22 +1334,22 @@ export default function WeddingInvitation() {
             {couple.brideUrdu} و {couple.groomUrdu}
           </p>
 
-          <p className="mx-auto mt-6 max-w-md text-sm leading-7 text-white/85">
+          <p className="mx-auto mt-6 max-w-md text-sm leading-7 text-white/80">
             We feel blessed to begin this journey together, and we cannot wait to celebrate with you.
           </p>
 
-          <p lang="ur" dir="rtl" className="mx-auto mt-3 max-w-md font-urdu text-base leading-9 text-white/85">
+          <p lang="ur" dir="rtl" className="mx-auto mt-3 max-w-md font-urdu text-base leading-9 text-white/80">
             ہم اپنے اس نئے سفر کے آغاز پر اللہ کے شکر گزار ہیں اور آپ کے ساتھ یہ خوشیاں منانے کے منتظر ہیں۔
           </p>
 
           <a
             href="#home"
-            className="mt-9 inline-flex rounded-full border border-white/60 px-7 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] transition hover:bg-white hover:text-[#b52f66]"
+            className="mt-9 inline-flex rounded-full border border-white/60 px-7 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] transition hover:bg-white hover:text-[#744052]"
           >
             <Bi en="Back to Top ↑" ur="واپس اوپر جائیں ↑" />
           </a>
 
-          <p className="mt-14 text-[9px] uppercase tracking-[0.2em] text-white/60">
+          <p className="mt-14 text-[9px] uppercase tracking-[0.2em] text-white/50">
             Made with love for our special day · 2026
           </p>
         </div>
